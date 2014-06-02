@@ -43,3 +43,20 @@ The dependencies are injected as arguments to your listener. Alternately, you ca
    	  // Use `a` and `b` here
       // This function will be invoked after `a` and `b` are injected
   	});
+  	
+If a dependency is resolved once with a specific value, and then the dependency is re-injected with a different value, the resolver will be invoked again:
+
+	injector.resolve(['a'], function resolver(a) {
+	  // `a` = { foo: 'bar' } the first time
+	  // `a` = { foo: 'foobar' } the second time
+	});
+	
+	// The resolver above will get invoked
+	injector.register('a', { foo: 'bar' });
+
+	// The resolver above will not get invoked	again
+	injector.register('a', { foo: 'bar' });
+    
+    // The resolver above will get invoked again 
+    // since injected dependency has changed
+    injector.register('a', { foo: 'foobar' });

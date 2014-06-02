@@ -40,6 +40,16 @@ class DependencyInjection
     Assert.ok(typeof dependency_key is 'string' and dependency_key.length > 0, 'Dependency name/key has to be passed as a non-empty string')
     Assert.ok(dependency_value?, 'Dependency (value) is required')
 
+    # Reset resolvers if new dependency is being injected
+    old_dependency_value = @dependencies[dependency_key]
+    resolvers = @dependants[dependency_key] or []
+    for resolver in resolvers
+      @log "Checking resolver #{resolver}; Is it already resolved = #{resolver.is_resolved}"
+      if JSON.stringify(dependency_value) isnt JSON.stringify(old_dependency_value)
+        @log "Resetting Resolver (#{resolver.name})" 
+        resolver.is_resolved = false
+
+    # Set dependencies prior to injecting them into resolvers
     @dependencies[dependency_key] = dependency_value
     @inject [ dependency_key ]
 

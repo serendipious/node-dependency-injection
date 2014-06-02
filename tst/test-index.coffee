@@ -60,3 +60,18 @@ describe 'DependencyInjection', ->
       Assert.equal resolved_value1, @[d1.name]
       Assert.equal resolved_value2, @[d2.name]
       done()
+
+  it 'should invoke resolver if dependency registered changes value', (done) =>
+    d1 = getRandomDependency()
+    d2 = getRandomDependency()
+
+    injector.resolve [ d1.name ], (resolved_value) ->
+      if resolved_value is d2.value
+        done()
+
+    # Inject a value first key (d1.name)
+    injector.register(d1.name, d1.value)
+
+    # Inject different value with same key (d1.name)
+    injector.register(d1.name, d2.value)
+

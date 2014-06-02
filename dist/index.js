@@ -26,9 +26,20 @@
     };
 
     DependencyInjection.prototype.register = function(dependency_key, dependency_value) {
+      var old_dependency_value, resolver, resolvers, _i, _len;
       this.log('register', arguments);
       Assert.ok(typeof dependency_key === 'string' && dependency_key.length > 0, 'Dependency name/key has to be passed as a non-empty string');
       Assert.ok(dependency_value != null, 'Dependency (value) is required');
+      old_dependency_value = this.dependencies[dependency_key];
+      resolvers = this.dependants[dependency_key] || [];
+      for (_i = 0, _len = resolvers.length; _i < _len; _i++) {
+        resolver = resolvers[_i];
+        this.log("Checking resolver " + resolver + "; Is it already resolved = " + resolver.is_resolved);
+        if (JSON.stringify(dependency_value) !== JSON.stringify(old_dependency_value)) {
+          this.log("Resetting Resolver (" + resolver.name + ")");
+          resolver.is_resolved = false;
+        }
+      }
       this.dependencies[dependency_key] = dependency_value;
       return this.inject([dependency_key]);
     };
