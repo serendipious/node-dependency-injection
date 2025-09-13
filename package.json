@@ -2,19 +2,30 @@
   "name": "di",
   "version": "0.0.1",
   "description": "Dependency Injection for Node.js",
-  "main": "./dist",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "dependencies": {
-    "underscore": "^1.6.0"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "coffee-script": "^1.7.1",
-    "mocha": "^1.20.0",
-    "istanbul": "^0.2.10"
+    "@types/lodash": "^4.14.202",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.10.0",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0"
   },
   "scripts": {
     "clean": "rm -rf ./{dist,node_modules,coverage}",
-    "compile": "coffee -c -o ./dist src/index.coffee",
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers coffee:coffee-script/register -u bdd -R spec ./tst/test-*.coffee"
+    "build": "tsc",
+    "compile": "npm run build",
+    "test": "nyc mocha -r ts-node/register tst/test-*.ts",
+    "test:watch": "nyc mocha -r ts-node/register --watch tst/test-*.ts",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
