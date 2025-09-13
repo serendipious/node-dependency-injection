@@ -1,6 +1,6 @@
 {
   "name": "di",
-  "version": "0.0.1",
+  "version": "0.5",
   "description": "Dependency Injection for Node.js",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -38,7 +38,7 @@
     "injection"
   ],
   "author": "Ankit Kuwadekar",
-  "license": "BSD",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/serendipious/node-dependency-injection/issues"
   },
