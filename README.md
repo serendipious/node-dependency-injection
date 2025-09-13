@@ -267,9 +267,9 @@ npm run test -- --reporter=html
 The project maintains high code quality standards:
 
 - **TypeScript** with strict type checking
-- **ESLint** for code linting
-- **Prettier** for code formatting
+- **Pre-commit hooks** that run tests and coverage checks
 - **97.95% test coverage** with comprehensive test suite
+- **Automated quality gates** prevent commits that don't meet standards
 
 ## Contributing
 

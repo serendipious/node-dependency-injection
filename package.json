@@ -15,6 +15,7 @@
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.10.0",
     "@types/sinon": "^17.0.2",
+    "husky": "^8.0.3",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
     "sinon": "^17.0.1",
@@ -27,6 +28,9 @@
     "compile": "npm run build",
     "test": "nyc mocha -r ts-node/register tst/test-*.ts",
     "test:watch": "nyc mocha -r ts-node/register --watch tst/test-*.ts",
+    "test:coverage": "nyc mocha -r ts-node/register tst/test-*.ts --reporter=html",
+    "pre-commit": "npm test",
+    "prepare": "husky install",
     "prepublishOnly": "npm run build"
   },
   "repository": {

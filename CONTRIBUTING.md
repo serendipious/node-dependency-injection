@@ -58,6 +58,22 @@ npm test
 
 You should see all tests passing with 97.95% coverage.
 
+### Pre-commit Hooks
+
+The project uses Husky to run pre-commit hooks that automatically:
+- Run the full test suite
+- Check test coverage meets requirements (≥95%)
+- Prevent commits that don't pass quality checks
+
+These hooks are automatically installed when you run `npm install`.
+
+**Note**: If you need to bypass pre-commit hooks (not recommended), you can use:
+```bash
+git commit --no-verify -m "your commit message"
+```
+
+However, this should only be used in exceptional circumstances, as it bypasses important quality checks.
+
 ## Project Structure
 
 ```
@@ -225,22 +241,24 @@ The project uses strict TypeScript settings:
 
 ### Before Submitting
 
-1. **Run Tests**: Ensure all tests pass
+1. **Pre-commit Hooks**: The pre-commit hook will automatically run tests and coverage checks when you commit. If tests fail, the commit will be blocked.
+
+2. **Manual Testing** (if needed): You can also run tests manually:
    ```bash
    npm test
    ```
 
-2. **Check Coverage**: Verify test coverage meets requirements
+3. **Check Coverage**: Verify test coverage meets requirements
    ```bash
-   npm test -- --reporter=html
+   npm run test:coverage
    ```
 
-3. **Build Successfully**: Ensure the project builds without errors
+4. **Build Successfully**: Ensure the project builds without errors
    ```bash
    npm run build
    ```
 
-4. **Update Documentation**: Update README.md if you've added new features
+5. **Update Documentation**: Update README.md if you've added new features
 
 ### PR Checklist
 
@@ -319,6 +337,8 @@ For feature requests, please include:
 2. Create feature branch: `git checkout -b feature/name`
 3. Make changes and test: `npm test`
 4. Commit changes: `git commit -m "feat: add new feature"`
+   - Pre-commit hooks will automatically run tests and coverage checks
+   - If tests fail, fix the issues before committing
 5. Push to fork: `git push origin feature/name`
 6. Create pull request
 
