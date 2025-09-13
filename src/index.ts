@@ -72,7 +72,7 @@ export class DependencyInjection {
       typeof dependency_key === 'string' && dependency_key.length > 0,
       'Dependency name/key has to be passed as a non-empty string'
     );
-    Assert.ok(dependency_value != null, 'Dependency (value) is required');
+    Assert.ok(dependency_value !== undefined, 'Dependency (value) is required');
 
     // Reset resolvers if new dependency is being injected
     const old_dependency_value = this.dependencies[dependency_key];
@@ -144,7 +144,7 @@ export class DependencyInjection {
             }
           }
 
-          if (resolver_dependencies.length === (resolver.dependencies || []).length) {
+          if (resolver.dependencies && resolver_dependencies.length === resolver.dependencies.length) {
             resolved.push(resolver);
             resolver.is_resolved = true;
             resolver.apply(resolver_context, resolver_dependencies);
