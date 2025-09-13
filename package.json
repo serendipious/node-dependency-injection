@@ -1,7 +1,7 @@
 {
-  "name": "di",
-  "version": "0.5",
-  "description": "Dependency Injection for Node.js",
+  "name": "minjex",
+  "version": "0.5.0",
+  "description": "Minimal dependency injection for Node.js with TypeScript support",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "engines": {

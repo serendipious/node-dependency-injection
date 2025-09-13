@@ -84,7 +84,7 @@ injector.register('emailService', emailService);
 ## Installation
 
 ```bash
-npm install --save git://github.com/serendipious/node-dependency-injection
+npm install --save minjex
 ```
 
 ## Quick Start
@@ -92,7 +92,7 @@ npm install --save git://github.com/serendipious/node-dependency-injection
 ### JavaScript
 
 ```javascript
-const DependencyInjector = require('di');
+const DependencyInjector = require('minjex');
 
 const injector = new DependencyInjector();
 
@@ -111,7 +111,7 @@ injector.resolve(['database', 'apiKey'], (db, key) => {
 ### TypeScript
 
 ```typescript
-import DependencyInjector, { DependencyInjectionOptions } from 'di';
+import DependencyInjector, { DependencyInjectionOptions } from 'minjex';
 
 interface DatabaseConfig {
   host: string;
@@ -281,9 +281,11 @@ BSD License - see [LICENSE](LICENSE) file for details.
 
 ## Changelog
 
-### v0.0.1
-- Initial release
+### v0.5
+- Initial release as `minjex`
 - TypeScript migration from CoffeeScript
 - Node.js 20+ support
-- Comprehensive test suite
+- Comprehensive test suite (97.95% coverage)
 - Full type definitions
+- Pre-commit hooks for quality assurance
+- Modern documentation and contribution guidelines
